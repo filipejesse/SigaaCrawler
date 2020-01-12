@@ -11,10 +11,26 @@ namespace SigaaCrawler
 {
     public class FonteSigaa
     {
-
         public static string BaseUrl => "https://sig.ifsudestemg.edu.br/sigaa/logar.do?";
 
-        public static string StartNavigation()
+        public static Result StartNavigation()
+        {
+            var html = GetResponse();
+
+            if (html.Contains("Comportamento Inesperado!"))
+                throw new ComportamentoInesperadoException("Ocorreu um erro inesperado na consulta!");
+
+            if (!html.Contains("Dados Institucionais"))
+                throw new IncorrectPageException("Página encontrada não é válida");
+           
+            var parser = new ParserSigaa(html);
+
+            var result = parser.GetData();
+
+            return result;
+        }
+
+        private static string GetResponse()
         {
             string data = GetRequestParameters();
             var contentType = "application/x-www-form-urlencoded";
@@ -28,12 +44,17 @@ namespace SigaaCrawler
                 Path = "/"
             };
 
-            var html = HttpClient.Post(BaseUrl, data, contentType, cookie);
-
-            if (html.Contains("Comportamento Inesperado!"))
-                throw new ComportamentoInesperadoException("Ocorreu um erro inesperado na consulta!");
-
-
+            string html = string.Empty;
+            var retries = 0;
+            var maxRetries = 3;
+            while(retries <= maxRetries)
+            {
+                html = HttpClient.Post(BaseUrl, data, contentType, cookie, out var status);
+                if (status == HttpStatusCode.OK)
+                    break;
+               
+                retries++;
+            }
             return html;
         }
 
