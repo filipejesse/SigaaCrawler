@@ -19,15 +19,18 @@ namespace SigaaCrawler.BaseRobo
             }
         }
 
-        public static string Post(string uri, string data, string contentType, string method = "POST")
+        public static string Post(string uri, string data, string contentType, Cookie cookie, string method = "POST")
         {
-            byte[] dataBytes = Encoding.ASCII.GetBytes(data);
+            byte[] dataBytes = Encoding.UTF8.GetBytes(data);
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
             request.ContentLength = dataBytes.Length;
             request.ContentType = contentType;
             request.Method = method;
+            request.CookieContainer = new CookieContainer();
+            request.CookieContainer.Add(cookie);
+            request.UserAgent = "PostmanRuntime/7.21.0";
 
             using (Stream requestBody = request.GetRequestStream())
             {
