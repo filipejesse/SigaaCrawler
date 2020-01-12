@@ -19,7 +19,7 @@ namespace SigaaCrawler.BaseRobo
             }
         }
 
-        public static string Post(string uri, string data, string contentType, Cookie cookie, string method = "POST")
+        public static string Post(string uri, string data, string contentType, Cookie cookie, out HttpStatusCode status, string method = "POST")
         {
             byte[] dataBytes = Encoding.UTF8.GetBytes(data);
 
@@ -41,6 +41,7 @@ namespace SigaaCrawler.BaseRobo
             using (Stream stream = response.GetResponseStream())
             using (StreamReader reader = new StreamReader(stream))
             {
+                status = response.StatusCode;
                 return reader.ReadToEnd();
             }
         }
