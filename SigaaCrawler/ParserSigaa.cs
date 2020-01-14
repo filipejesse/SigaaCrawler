@@ -12,7 +12,21 @@ namespace SigaaCrawler
 
         public Result GetData()
         {
-            throw new NotImplementedException();
+            var result = new Result();
+            result.Ira = GetAcademicPerformanceIndex();
+
+            return result;
+        }
+
+
+        private double? GetAcademicPerformanceIndex()
+        {
+            var node = HtmlDocument.DocumentNode.SelectSingleNode("//td[..//acronym[text()='IRA:']][4]/div");
+
+            if (Double.TryParse(node?.InnerText, out double ira))
+                return ira;
+            
+            return null;
         }
     }
 }

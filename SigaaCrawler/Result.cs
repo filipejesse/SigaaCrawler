@@ -12,7 +12,7 @@ namespace SigaaCrawler
 
         public string Nível { get; set; }
         
-        public double Ira { get; set; }
+        public double? Ira { get; set; }
 
         public string StatusMatricula { get; set; }
     }
