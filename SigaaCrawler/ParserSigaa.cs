@@ -1,5 +1,6 @@
 ﻿using SigaaCrawler.BaseRobo;
 using System;
+using System.Text.RegularExpressions;
 
 namespace SigaaCrawler
 {
@@ -13,15 +14,19 @@ namespace SigaaCrawler
         public Result GetData()
         {
             var result = new Result();
-            result.Matricula = GetIdNumber();
+            result.Matricula = GetCourseData("Matrícula");
             result.Ira = GetAcademicPerformanceIndex();
+            result.Curso = Regex.Replace(GetCourseData("Curso"), @"[\n\t\r]", string.Empty);
+            result.Nivel = GetCourseData("Nível");
+            result.StatusMatricula = GetCourseData("Status");
+            result.SemestreEntrada = GetCourseData("Entrada");
 
             return result;
         }
 
-        private string GetIdNumber()
+        private string GetCourseData(string element)
         {
-            var node = HtmlDocument.DocumentNode.SelectSingleNode("//td[contains(text(), 'Matrícula:')]/following-sibling::td");
+            var node = HtmlDocument.DocumentNode.SelectSingleNode($"//td[contains(text(), '{element}')]/following-sibling::td");
             return node?.InnerText.Trim();
         }
 
