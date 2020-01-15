@@ -13,11 +13,17 @@ namespace SigaaCrawler
         public Result GetData()
         {
             var result = new Result();
+            result.Matricula = GetIdNumber();
             result.Ira = GetAcademicPerformanceIndex();
 
             return result;
         }
 
+        private string GetIdNumber()
+        {
+            var node = HtmlDocument.DocumentNode.SelectSingleNode("//td[contains(text(), 'Matrícula:')]/following-sibling::td");
+            return node?.InnerText.Trim();
+        }
 
         private double? GetAcademicPerformanceIndex()
         {

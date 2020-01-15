@@ -1,7 +1,5 @@
 ﻿using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Web;
 
 namespace SigaaCrawler.BaseRobo
 {
@@ -9,10 +7,10 @@ namespace SigaaCrawler.BaseRobo
     {
         public ParserBase(string html)
         {
-            this.Html = html;
+            this.Html = HttpUtility.HtmlDecode(html);
 
             this.HtmlDocument = new HtmlDocument();
-            this.HtmlDocument.LoadHtml(html);
+            this.HtmlDocument.LoadHtml(this.Html);
         }
 
         protected string Html { get; set; }
