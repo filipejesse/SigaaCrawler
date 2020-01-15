@@ -10,10 +10,12 @@ namespace SigaaCrawler
 
         public string Curso { get; set; }
 
-        public string Nível { get; set; }
+        public string Nivel { get; set; }
         
         public double? Ira { get; set; }
 
         public string StatusMatricula { get; set; }
+
+        public string SemestreEntrada { get; set; }
     }
 }
