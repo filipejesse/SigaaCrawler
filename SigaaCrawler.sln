@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigaaCrawler", "SigaaCrawler\SigaaCrawler.csproj", "{4701E7BF-990D-46CA-B6E1-FE8001A20976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SigaaCrawler", "SigaaCrawler\SigaaCrawler.csproj", "{4701E7BF-990D-46CA-B6E1-FE8001A20976}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigaaCrawlerTest", "SigaaCrawlerTest\SigaaCrawlerTest.csproj", "{7588202D-B7A1-49C6-B94B-E07CB2FE6751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4701E7BF-990D-46CA-B6E1-FE8001A20976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4701E7BF-990D-46CA-B6E1-FE8001A20976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4701E7BF-990D-46CA-B6E1-FE8001A20976}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7588202D-B7A1-49C6-B94B-E07CB2FE6751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7588202D-B7A1-49C6-B94B-E07CB2FE6751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7588202D-B7A1-49C6-B94B-E07CB2FE6751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7588202D-B7A1-49C6-B94B-E07CB2FE6751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
