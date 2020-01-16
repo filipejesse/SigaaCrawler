@@ -8,7 +8,6 @@ namespace SigaaCrawler.BaseRobo
         public ParserBase(string html)
         {
             this.Html = HttpUtility.HtmlDecode(html);
-
             this.HtmlDocument = new HtmlDocument();
             this.HtmlDocument.LoadHtml(this.Html);
         }

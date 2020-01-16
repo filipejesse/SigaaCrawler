@@ -9,7 +9,6 @@ namespace SigaaCrawler.Exceptions
         public IncorrectPageException(string message) 
             : base(message)
         {
-
         }
     }
 }
