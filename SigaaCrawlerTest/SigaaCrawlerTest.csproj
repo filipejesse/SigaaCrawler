@@ -16,12 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\SigaaCrawler\SigaaCrawler.csproj" />
   </ItemGroup>
-  
-  <Target Name="CopyAppConfig" AfterTargets="Build" DependsOnTargets="Build">
-    <CreateItem Include="..\SigaaCrawlerTest\bin\Debug\netcoreapp3.1\testhost.dll.config">
-      <Output TaskParameter="Include" ItemName="FilesToCopy"/>
-    </CreateItem>
-    <Copy SourceFiles="..\SigaaCrawlerTest\App.config" DestinationFiles="..\SigaaCrawlerTest\bin\Debug\netcoreapp3.1\testhost.dll.config" />
-  </Target>
 
+  <Target Name="CopyAppConfig" AfterTargets="AfterBuild">
+    <Copy SourceFiles="..\SigaaCrawler\App.config" DestinationFiles="$(OutDir)\testhost.dll.config" />
+  </Target>
+  
 </Project>
