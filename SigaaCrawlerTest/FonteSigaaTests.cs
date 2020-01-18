@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SigaaCrawler;
+using System.Configuration;
 
 namespace SigaaCrawlerTest
 {
@@ -13,12 +14,12 @@ namespace SigaaCrawlerTest
             Assert.AreEqual(
                 new Result
                 {
-                    Nome = "FILIPE JESSE DE CASTRO ARRUDA",
+                    Curso = "SISTEMAS DE INFORMAÇÃO/JFADEN - Juiz de Fora - BACHARELADO -INT",
                     Ira = 7.9695,
-                    Curso = "SISTEMAS DE INFORMAÇÃO / JFADEN - Juiz de Fora - BACHARELADO -INT",
                     Matricula = "17006902",
-                    Nivel = "Graduação",
-                    StatusMatricula = "Ativo",
+                    Nivel = "GRADUAÇÃO",
+                    Nome = "FILIPE JESSE DE CASTRO ARRUDA",
+                    StatusMatricula = "ATIVO",
                     SemestreEntrada = "2017.1",
                     SemestreAtual = "2020.1"
                 }, result);
