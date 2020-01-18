@@ -19,7 +19,7 @@ namespace SigaaCrawler.BaseRobo
             }
         }
 
-        public static string Post(string uri, string data, string contentType, Cookie cookie, out HttpStatusCode status, string method = "POST")
+        public static string Post(string uri, string data, string contentType, Cookie cookie, string userAgent, out HttpStatusCode status, string method = "POST")
         {
             byte[] dataBytes = Encoding.UTF8.GetBytes(data);
 
@@ -30,7 +30,7 @@ namespace SigaaCrawler.BaseRobo
             request.Method = method;
             request.CookieContainer = new CookieContainer();
             request.CookieContainer.Add(cookie);
-            request.UserAgent = "PostmanRuntime/7.21.0";
+            request.UserAgent = userAgent;
 
             using (Stream requestBody = request.GetRequestStream())
             {

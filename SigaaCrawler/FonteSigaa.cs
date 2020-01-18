@@ -34,6 +34,7 @@ namespace SigaaCrawler
         {
             string data = GetRequestParameters();
             var contentType = "application/x-www-form-urlencoded";
+            var userAgent = "PostmanRuntime/7.21.0";
             var cookie = new Cookie()
             {
                 Name = "JSESSIONID",
@@ -49,7 +50,7 @@ namespace SigaaCrawler
             var maxRetries = 3;
             while(retries <= maxRetries)
             {
-                html = HttpClient.Post(BaseUrl, data, contentType, cookie, out var status);
+                html = HttpClient.Post(BaseUrl, data, contentType, cookie, userAgent, out var status);
                 if (status == HttpStatusCode.OK)
                     break;
                
