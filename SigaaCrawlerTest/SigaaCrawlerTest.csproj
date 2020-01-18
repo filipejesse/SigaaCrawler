@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -18,10 +18,10 @@
   </ItemGroup>
   
   <Target Name="CopyAppConfig" AfterTargets="Build" DependsOnTargets="Build">
-    <CreateItem Include="C:\Users\filip\source\repos\SigaaCrawler\SigaaCrawlerTest\bin\Debug\netcoreapp3.1\testhost.dll.config">
+    <CreateItem Include="..\SigaaCrawlerTest\bin\Debug\netcoreapp3.1\testhost.dll.config">
       <Output TaskParameter="Include" ItemName="FilesToCopy"/>
     </CreateItem>
-    <Copy SourceFiles="C:\Users\filip\source\repos\SigaaCrawler\SigaaCrawlerTest\App.config" DestinationFiles="C:\Users\filip\source\repos\SigaaCrawler\SigaaCrawlerTest\bin\Debug\netcoreapp3.1\testhost.dll.config" />
+    <Copy SourceFiles="..\SigaaCrawlerTest\App.config" DestinationFiles="..\SigaaCrawlerTest\bin\Debug\netcoreapp3.1\testhost.dll.config" />
   </Target>
 
 </Project>
