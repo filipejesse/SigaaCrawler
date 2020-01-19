@@ -11,18 +11,30 @@ namespace SigaaCrawler
 {
     public class FonteSigaa
     {
+        public static string Login { get; set; } = ConfigurationManager.AppSettings["username"];
+
+        public static string Password { get; set; } = ConfigurationManager.AppSettings["password"];
+
         public static string BaseUrl => "https://sig.ifsudestemg.edu.br/sigaa/logar.do?";
 
-        public static Result StartNavigation()
+        public static Result StartNavigation(string login = null, string pass = null )
         {
+            if (!string.IsNullOrWhiteSpace(login)) Login = login;
+
+            if (!string.IsNullOrWhiteSpace(pass)) Password = pass;
+
             var html = GetResponse();
 
             if (html.Contains("Comportamento Inesperado!"))
                 throw new ComportamentoInesperadoException("Ocorreu um erro inesperado na consulta!");
 
+            if (html.Contains("Usuário e/ou senha inválidos"))
+                throw new InvalidLoginOrPasswordException("Usuário ou senha incorretos.");
+            
             if (!html.Contains("Dados Institucionais"))
-                throw new IncorrectPageException("Página encontrada não é válida");
-           
+                throw new IncorrectPageException("Erro ao navegar para site. Página encontrada não é válida");
+
+
             var parser = new ParserSigaa(html);
 
             var result = parser.GetData();
@@ -48,12 +60,12 @@ namespace SigaaCrawler
             string html = string.Empty;
             var retries = 0;
             var maxRetries = 3;
-            while(retries <= maxRetries)
+            while (retries <= maxRetries)
             {
                 html = HttpClient.Post(BaseUrl, data, contentType, cookie, userAgent, out var status);
                 if (status == HttpStatusCode.OK)
                     break;
-               
+
                 retries++;
             }
             return html;
@@ -61,8 +73,8 @@ namespace SigaaCrawler
 
         private static string GetRequestParameters()
         {
-            var login = Uri.EscapeDataString(ConfigurationManager.AppSettings["username"]);
-            var senha = Uri.EscapeDataString(ConfigurationManager.AppSettings["password"]);
+            var login = Uri.EscapeDataString(Login);
+            var senha = Uri.EscapeDataString(Password);
             var dispatch = Uri.EscapeDataString("logOn");
             return $"dispatch={dispatch}&user.login={login}&user.senha={senha}&width=1024&height=768";
         }

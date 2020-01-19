@@ -4,9 +4,9 @@ using System.Text;
 
 namespace SigaaCrawler.Exceptions
 {
-    public class IncorrectPageException : Exception
+    public class InvalidLoginOrPasswordException : Exception
     {
-        public IncorrectPageException(string message) 
+        public InvalidLoginOrPasswordException(string message)
             : base(message)
         {
         }
