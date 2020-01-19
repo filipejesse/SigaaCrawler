@@ -23,7 +23,7 @@ namespace SigTelegramBot
         {
             if (e.Message.Type == Telegram.Bot.Types.Enums.MessageType.Text)
             {
-                
+
                 if (e.Message.Text.Trim().Equals("/Bom dia SigBot", StringComparison.OrdinalIgnoreCase))
                 {
                     Bot.SendTextMessageAsync(e.Message.Chat.Id, $"Bom dia {e.Message.Chat.Username}");
@@ -47,7 +47,7 @@ namespace SigTelegramBot
 
                         Bot.SendTextMessageAsync(e.Message.Chat.Id, stringData);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Bot.SendTextMessageAsync(e.Message.Chat.Id, ex.Message);
                     }
