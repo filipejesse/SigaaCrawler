@@ -6,7 +6,7 @@ namespace SigaaCrawler
     {
         static void Main(string[] args)
         {
-            var teste = FonteSigaa.StartNavigation();
+            Console.WriteLine("Hello World");
 
         }
     }
