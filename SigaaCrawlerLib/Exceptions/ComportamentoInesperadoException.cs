@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigaaCrawler.Exceptions
+namespace SigaaCrawlerLib.Exceptions
 {
     public class ComportamentoInesperadoException : Exception
     {
-        public ComportamentoInesperadoException(string message) 
+        public ComportamentoInesperadoException(string message)
             : base(message)
         {
         }

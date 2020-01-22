@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SigaaCrawler\SigaaCrawler.csproj" />
+    <ProjectReference Include="..\SigaaCrawlerLib\SigaaCrawlerLib.csproj" />
   </ItemGroup>
 
 </Project>

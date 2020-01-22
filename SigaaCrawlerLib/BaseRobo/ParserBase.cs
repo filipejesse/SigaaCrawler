@@ -1,7 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System.Web;
 
-namespace SigaaCrawler.BaseRobo
+namespace SigaaCrawlerLib.BaseRobo
 {
     public class ParserBase
     {

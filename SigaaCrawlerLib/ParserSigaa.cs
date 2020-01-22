@@ -1,12 +1,12 @@
-﻿using SigaaCrawler.BaseRobo;
+﻿using SigaaCrawlerLib.BaseRobo;
 using System;
 using System.Text.RegularExpressions;
 
-namespace SigaaCrawler
+namespace SigaaCrawlerLib
 {
     public class ParserSigaa : ParserBase
     {
-        public ParserSigaa(string html) 
+        public ParserSigaa(string html)
             : base(html)
         {
         }
@@ -34,10 +34,10 @@ namespace SigaaCrawler
         private double? GetAcademicPerformanceIndex()
         {
             var node = GetValue("//td[..//acronym[text()='IRA:']][4]/div");
-            
+
             if (Double.TryParse(node, out double ira))
                 return ira;
-            
+
             return null;
         }
 

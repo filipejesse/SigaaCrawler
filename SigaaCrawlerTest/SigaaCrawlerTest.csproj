@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SigaaCrawler\SigaaCrawler.csproj" />
+    <ProjectReference Include="..\SigaaCrawlerLib\SigaaCrawlerLib.csproj" />
   </ItemGroup>
 
   <Target Name="CopyAppConfig" AfterTargets="AfterBuild">
-    <Copy SourceFiles="..\SigaaCrawler\App.config" DestinationFiles="$(OutDir)\testhost.dll.config" />
+    <Copy SourceFiles="..\SigaaCrawlerLib\App.config" DestinationFiles="$(OutDir)\testhost.dll.config" />
   </Target>
   
 </Project>
