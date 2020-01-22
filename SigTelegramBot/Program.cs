@@ -1,4 +1,4 @@
-﻿using SigaaCrawler;
+﻿using SigaaCrawlerLib;
 using System;
 using System.Configuration;
 using System.Text.RegularExpressions;
