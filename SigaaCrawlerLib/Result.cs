@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SigaaCrawler
+namespace SigaaCrawlerLib
 {
     public class Result
     {
@@ -13,7 +13,7 @@ namespace SigaaCrawler
         public string Curso { get; set; }
 
         public string Nivel { get; set; }
-        
+
         public double? Ira { get; set; }
 
         public string StatusMatricula { get; set; }

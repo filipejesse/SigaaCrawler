@@ -1,5 +1,5 @@
-﻿using SigaaCrawler.BaseRobo;
-using SigaaCrawler.Exceptions;
+﻿using SigaaCrawlerLib.BaseRobo;
+using SigaaCrawlerLib.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,30 +7,29 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SigaaCrawler
+namespace SigaaCrawlerLib
 {
     public class FonteSigaa
     {
-        public static string Login { get; set; } = ConfigurationManager.AppSettings["username"];
-
-        public static string Password { get; set; } = ConfigurationManager.AppSettings["password"];
-
         public static string BaseUrl => "https://sig.ifsudestemg.edu.br/sigaa/logar.do?";
 
-        public static Result StartNavigation(string login = null, string pass = null )
+        public static Result StartNavigation(string login, string pass)
         {
-            if (!string.IsNullOrWhiteSpace(login)) Login = login;
+            if (string.IsNullOrWhiteSpace(login)) 
+                throw new ArgumentException("Login inválido");
 
-            if (!string.IsNullOrWhiteSpace(pass)) Password = pass;
+            if (string.IsNullOrWhiteSpace(pass)) 
+                throw new ArgumentException("Senha inválida");
 
-            var html = GetResponse();
+            var data = GetRequestParameters(login, pass);
+            var html = GetResponse(data);
 
             if (html.Contains("Comportamento Inesperado!"))
                 throw new ComportamentoInesperadoException("Ocorreu um erro inesperado na consulta!");
 
             if (html.Contains("Usuário e/ou senha inválidos"))
                 throw new InvalidLoginOrPasswordException("Usuário ou senha incorretos.");
-            
+
             if (!html.Contains("Dados Institucionais"))
                 throw new IncorrectPageException("Erro ao navegar para site. Página encontrada não é válida");
 
@@ -42,9 +41,8 @@ namespace SigaaCrawler
             return result;
         }
 
-        private static string GetResponse()
+        private static string GetResponse(string data)
         {
-            string data = GetRequestParameters();
             var contentType = "application/x-www-form-urlencoded";
             var userAgent = "PostmanRuntime/7.21.0";
             var cookie = new Cookie()
@@ -71,10 +69,10 @@ namespace SigaaCrawler
             return html;
         }
 
-        private static string GetRequestParameters()
+        private static string GetRequestParameters(string user, string password)
         {
-            var login = Uri.EscapeDataString(Login);
-            var senha = Uri.EscapeDataString(Password);
+            var login = Uri.EscapeDataString(user);
+            var senha = Uri.EscapeDataString(password);
             var dispatch = Uri.EscapeDataString("logOn");
             return $"dispatch={dispatch}&user.login={login}&user.senha={senha}&width=1024&height=768";
         }

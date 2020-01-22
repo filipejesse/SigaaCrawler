@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SigaaCrawler;
+using SigaaCrawlerLib;
 using System.Configuration;
 
 namespace SigaaCrawlerTest
@@ -10,7 +10,9 @@ namespace SigaaCrawlerTest
         [TestMethod()]
         public void StartNavigationTest()
         {
-            var result = FonteSigaa.StartNavigation();
+            var login = ConfigurationManager.AppSettings["username"];
+            var pass = ConfigurationManager.AppSettings["password"];
+            var result = FonteSigaa.StartNavigation(login, pass);
             Assert.AreEqual(
                 new Result
                 {
