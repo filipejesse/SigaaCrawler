@@ -52,6 +52,11 @@ namespace SigTelegramBot
                     Bot.SendTextMessageAsync(e.Message.Chat.Id, $"Bom dia {e.Message.Chat.Username}");
                 }
 
+                else if (e.Message.Text.Trim().Equals("/Test", StringComparison.OrdinalIgnoreCase))
+                {
+                    Bot.SendTextMessageAsync(e.Message.Chat.Id, $"It's working!");
+                }
+
                 else
                 {
                     Bot.SendTextMessageAsync(e.Message.Chat.Id, @"Usage: 
