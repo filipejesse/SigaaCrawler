@@ -8,7 +8,7 @@ namespace SigTelegramBot
 {
     class Program
     {
-        public static readonly TelegramBotClient Bot = new TelegramBotClient(ConfigurationManager.AppSettings["BotToken"]);
+        public static readonly TelegramBotClient Bot = new TelegramBotClient(Environment.GetEnvironmentVariable("BotToken"));
         static void Main(string[] args)
         {
             Bot.OnMessage += Bot_OnMessage;
